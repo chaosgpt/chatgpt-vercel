@@ -321,14 +321,14 @@ export default function (props: {
   const find = throttle(
     (value: string) => {
       if (value === "/" || value === " ")
-        return setCompatiblePrompt(props.prompts.slice(0, 10))
+        return setCompatiblePrompt(props.prompts.slice(0, 100))
       const query = value.replace(/^[\/ ](.*)/, "$1")
       if (query !== value)
         setCompatiblePrompt(
           fzf
             .find(query)
             .map(k => k.item)
-            .slice(0, 10)
+            .slice(0, 100)
         )
     },
     250,
