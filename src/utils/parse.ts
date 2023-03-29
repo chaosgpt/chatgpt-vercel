@@ -1,5 +1,5 @@
 //import * as md from "../../prompts.md"
-import * as md from "../../prompts-en.md"
+import * as md from "../../prompts.md"
 export function parsePrompts() {
   return md
     .rawContent()
