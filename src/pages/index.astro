@@ -14,6 +14,7 @@ import {
 import { parsePrompts } from "~/utils/parse"
 const prompts = parsePrompts()
 const message = import.meta.env.DEFAULT_MESSAGE || defaultMessage
+
 let setting = defaultSetting
 if (import.meta.env.DEFAULT_SETTING) {
   try {
