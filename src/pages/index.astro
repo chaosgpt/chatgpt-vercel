@@ -12,7 +12,11 @@ import {
   defaultSetting
 } from "~/system"
 import { parsePrompts } from "~/utils/parse"
+import { parsePromptsEn } from "~/utils/parseEn"
+
 const prompts = parsePrompts()
+const promptsEn = parsePromptsEn()
+
 const message = import.meta.env.DEFAULT_MESSAGE || defaultMessage
 
 let setting = defaultSetting
@@ -47,6 +51,7 @@ const question = Astro.url.searchParams.get("q")
       }}
       question={question ?? undefined}
       prompts={prompts}
+      promptsEn={promptsEn}
       client:visible
     />
   </main>

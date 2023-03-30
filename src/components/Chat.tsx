@@ -12,6 +12,7 @@ import { makeEventListener } from "@solid-primitives/event-listener"
 
 export default function (props: {
   prompts: PromptItem[]
+  promptsEn: PromptItem[]
   env: {
     setting: Setting
     message: string

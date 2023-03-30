@@ -10,5 +10,6 @@ export type Model = "gpt-3.5-turbo" | "gpt-4" | "gpt-4-32k"
 export interface PromptItem {
   desc: string
   prompt: string
+  promptEn: string
   positions?: Set<number>
 }

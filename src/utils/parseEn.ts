@@ -1,5 +1,5 @@
-import * as md from "../../prompts.md"
-export function parsePrompts() {
+import * as md from "../../prompts-en.md"
+export function parsePromptsEn() {
   return md
     .rawContent()
     .split(/^## (.+)$/m)
