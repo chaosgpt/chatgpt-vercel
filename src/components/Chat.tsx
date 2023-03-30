@@ -310,7 +310,7 @@ export default function (props: {
     (value: string) => {
       if (value === " "){
         return setCompatiblePrompt(props.prompts)
-      } else ifif (value === "/"){
+      } else if(value === "/"){
         return setCompatiblePrompt(props.promptsEn)
       } else { 
         const query = value.replace(/^[\/ ](.*)/, "$1")
