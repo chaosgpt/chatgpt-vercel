@@ -44,9 +44,6 @@ export default function (props: {
   const fzf = new Fzf(props.prompts, {
     selector: k => `${k.desc}||${k.prompt}`
   })
-  const fzfEn = new Fzf(props.promptsEn, {
-    selector: k => `${k.desc}||${k.prompt}`
-  })
   const [height, setHeight] = createSignal("48px")
   const [compositionend, setCompositionend] = createSignal(true)
 
