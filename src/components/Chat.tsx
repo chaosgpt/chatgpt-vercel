@@ -44,6 +44,9 @@ export default function (props: {
   const fzf = new Fzf(props.prompts, {
     selector: k => `${k.desc}||${k.prompt}`
   })
+  const fzfEn = new Fzf(props.promptsEn, {
+    selector: k => `${k.desc}||${k.prompt}`
+  })
   const [height, setHeight] = createSignal("48px")
   const [compositionend, setCompositionend] = createSignal(true)
 
@@ -310,14 +313,33 @@ export default function (props: {
       } else if(value === "/"){
         return setCompatiblePrompt(props.promptsEn)
       } else { 
+        console.log("input text:"+value);
+        const reg1 = /^\s+/; // start with " "
+        const reg2 = /^\/\w+/; // start with "/"
+        const ret1 = value.match(reg1);
+        const ret2 = value.match(reg2);
+        
         const query = value.replace(/^[\/ ](.*)/, "$1")
-        if (query !== value)
-          setCompatiblePrompt(
-            fzf.find(query).map(k => ({
-              ...k.item,
-              positions: k.positions
-            }))
-          )
+        if (query !== value){
+          if(ret1 !== null){
+            setCompatiblePrompt(
+              fzf.find(query).map(k => ({
+                ...k.item,
+                positions: k.positions
+              }))
+            )
+          }
+          if(ret2 !== null){
+            setCompatiblePrompt(
+              fzfEn.find(query).map(k => ({
+                ...k.item,
+                positions: k.positions
+              }))
+            )
+          }
+          
+        }
+          
       }
     },
     250,
