@@ -44,6 +44,9 @@ export default function (props: {
   const fzf = new Fzf(props.prompts, {
     selector: k => `${k.desc}||${k.prompt}`
   })
+  const fzfEn = new Fzf(props.promptsEn, {
+    selector: k => `${k.desc}||${k.prompt}`
+  })
   const [height, setHeight] = createSignal("48px")
   const [compositionend, setCompositionend] = createSignal(true)
 
@@ -305,16 +308,20 @@ export default function (props: {
 
   const findPrompts = throttle(
     (value: string) => {
-      if (value === "/" || value === " ")
+      if (value === " "){
         return setCompatiblePrompt(props.prompts)
-      const query = value.replace(/^[\/ ](.*)/, "$1")
-      if (query !== value)
-        setCompatiblePrompt(
-          fzf.find(query).map(k => ({
-            ...k.item,
-            positions: k.positions
-          }))
-        )
+      } else ifif (value === "/"){
+        return setCompatiblePrompt(props.promptsEn)
+      } else { 
+        const query = value.replace(/^[\/ ](.*)/, "$1")
+        if (query !== value)
+          setCompatiblePrompt(
+            fzf.find(query).map(k => ({
+              ...k.item,
+              positions: k.positions
+            }))
+          )
+      }
     },
     250,
     {
