@@ -213,7 +213,7 @@ export default function (props: {
     } catch (error: any) {
       setLoading(false)
       setController()
-      if (!error.message.includes("aborted a request"))
+      if (!error.message.includes("abort"))
         setMessageList([
           ...messageList(),
           {
@@ -308,20 +308,20 @@ export default function (props: {
 
   const findPrompts = throttle(
     (value: string) => {
-      if (value === " "){
+      if (value === " ") {
         return setCompatiblePrompt(props.prompts)
-      } else if(value === "/"){
+      } else if (value === "/") {
         return setCompatiblePrompt(props.promptsEn)
-      } else { 
-        console.log("input text:"+value);
-        const reg1 = /^\s+/; // start with " "
-        const reg2 = /^\/\w+/; // start with "/"
-        const ret1 = value.match(reg1);
-        const ret2 = value.match(reg2);
-        
+      } else {
+        console.log("input text:" + value)
+        const reg1 = /^\s+/ // start with " "
+        const reg2 = /^\/\w+/ // start with "/"
+        const ret1 = value.match(reg1)
+        const ret2 = value.match(reg2)
+
         const query = value.replace(/^[\/ ](.*)/, "$1")
-        if (query !== value){
-          if(ret1 !== null){
+        if (query !== value) {
+          if (ret1 !== null) {
             setCompatiblePrompt(
               fzf.find(query).map(k => ({
                 ...k.item,
@@ -329,7 +329,7 @@ export default function (props: {
               }))
             )
           }
-          if(ret2 !== null){
+          if (ret2 !== null) {
             setCompatiblePrompt(
               fzfEn.find(query).map(k => ({
                 ...k.item,
@@ -337,9 +337,7 @@ export default function (props: {
               }))
             )
           }
-          
         }
-          
       }
     },
     250,
